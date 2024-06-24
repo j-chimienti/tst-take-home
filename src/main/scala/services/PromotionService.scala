@@ -7,7 +7,12 @@ object PromotionService {
   ): Seq[PromotionCombo] = {
     // Generate all promotion codes
     val codes =
-      allPromotions.flatMap(c => combinablePromotions(c.code, allPromotions))
+      allPromotions.flatMap(c =>
+        combinablePromotions(
+          promotionCode = c.code,
+          allPromotions = allPromotions
+        )
+      )
     // Remove duplicates by converting to sets and back to sequences
     val uniqueCombos = codes.map(combo => combo.promotionCodes.toSet).distinct
     // Convert sets back to PromotionCombo
@@ -24,7 +29,9 @@ object PromotionService {
 
     val promo = promotionsByCode.getOrElse(
       promotionCode,
-      throw new NoSuchElementException(s"promotionCode=$promotionCode not found")
+      throw new NoSuchElementException(
+        s"promotionCode=$promotionCode not found"
+      )
     )
 
     // Filter out promotions that are not combinable with the given promotion

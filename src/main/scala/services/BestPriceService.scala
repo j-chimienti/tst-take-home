@@ -11,7 +11,7 @@ object BestPriceService {
     val rateCodeToRateGroups =
       rates.map(rate => rate.rateCode -> rate.rateGroup).toMap
 
-    // group prices by cabin code and rate group eg CA,Military,CB,Military
+    // group prices by cabin code and rate group eg (CA,Military),(CB,Military)
     val pricesByCabinCodeAndRateGroup =
       prices.groupBy(cp =>
         (

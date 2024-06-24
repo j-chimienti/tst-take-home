@@ -2,8 +2,11 @@ import services.{BestGroupPrice, BestPriceService, CabinPrice, Rate}
 
 class BestPriceServiceTest extends ServiceSpec {
   import BestPriceServiceTest._
-  test("getBestGroupPrices: return expected output") {
-    BestPriceService.getBestGroupPrices(rates, prices) shouldBe expected
+  test("getBestGroupPrices") {
+    BestPriceService.getBestGroupPrices(
+      rates = rates,
+      prices = prices
+    ) shouldBe expected
   }
 }
 
