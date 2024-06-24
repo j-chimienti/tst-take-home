@@ -9,3 +9,10 @@ This will execute all the test cases in the project.
 
 `sbt test`
 
+##### test best price service
+
+`sbt testOnly BestPriceService*`
+
+##### test promotion combo service
+
+`sbt testOnly PromotionService*`

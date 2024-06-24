@@ -24,15 +24,13 @@ object PromotionService {
       promotionCode: String,
       allPromotions: Seq[Promotion]
   ): Seq[PromotionCombo] = {
-    // Map promotion codes to their respective promotions
-    val promotionsByCode = allPromotions.map(p => p.code -> p).toMap
-
-    val promo = promotionsByCode.getOrElse(
-      promotionCode,
-      throw new NoSuchElementException(
-        s"promotionCode=$promotionCode not found"
+    val promo = allPromotions
+      .find(_.code == promotionCode)
+      .getOrElse(
+        throw new NoSuchElementException(
+          s"promotionCode=$promotionCode not found"
+        )
       )
-    )
 
     // Filter out promotions that are not combinable with the given promotion
     val combinablePromotions = allPromotions
